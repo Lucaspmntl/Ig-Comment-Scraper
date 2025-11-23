@@ -7,6 +7,8 @@ class InvalidApiTokenException(Exception):
         self.message = ("There was an error on the APIFY Token"
                         "\nCheck your API token and try again")
 
+        super().__init__(self.message)
+
 
 class ActorCallException(Exception):
     def __init__(self, actor_name: str, original_error):
@@ -23,3 +25,10 @@ class DatasetException(Exception):
         self.message = f"There was an error on the Dataset {dataset_client}\nDetails: {original_error}"
 
         super().__init__(self.message)
+
+
+class SchemaConverterException(Exception):
+    def __init__(self, original_error):
+        self.message = f"There was an error during converting raw data to schema \nDetails: {original_error}"
+
+        super().__init__()
