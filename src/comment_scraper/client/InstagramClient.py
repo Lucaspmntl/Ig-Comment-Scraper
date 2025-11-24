@@ -12,7 +12,7 @@ load_dotenv()
 class InstagramClient:
 
     def __init__(self):
-        self.TOKEN = os.getenv('TEST_APIFY_TOKEN')
+        self.TOKEN = os.getenv('APIFY_TOKEN')
 
         if not self.TOKEN:
             raise InvalidApiTokenException()
@@ -31,7 +31,7 @@ class InstagramClient:
             "resultsLimit": limit
         }
 
-        print(f"\n🔎 INITIALING COMMENT SCRAPING FROM: {url}\n")
+        print(f"\n\nINITIALING COMMENT SCRAPING FROM: {url}\n")
 
         try:
             run_info = await comment_actor.call(run_input=run_input)
