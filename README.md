@@ -5,7 +5,7 @@ Este projeto foi desenvolvido com fins educacionais para estudar conceitos de **
 
 O objetivo principal não é ser um produto final, mas sim demonstrar como estruturar uma aplicação Python robusta que consome dados externos, valida entradas "sujas" e expõe os resultados via API.
 
-## Funcionalidades 🖥️
+## Funcionalidades 🚀
 - **Extração de Dados:** Coleta comentários de publicações do Instagram (Reels ou Fotos) utilizando *Actors* da Apify.
 - **Validação e Limpeza:** Converte dados brutos JSON em objetos Python estruturados usando **Pydantic**.
 - **Filtragem:** Capacidade de filtrar comentários por palavras-chave específicas.
@@ -30,8 +30,11 @@ O código foi organizado seguindo o princípio de separação de responsabilidad
 Para funcionar, o projeto necessita de um arquivo `.env` na raiz contendo o token de acesso:
 
 ```env
-APIFY_TOKEN=seu_token_da_apify_aqui
+TEST_APIFY_TOKEN=seu_token_da_apify_aqui
 ```
 
 Para informações mais concisas e possibilidade de acesso ao TOKEN da API consulte o site oficial da APIFY: 
 ```https://apify.com/``` ou ```https://console.apify.com/``` para console.
+
+## Demonstração do end point com Postman ❓
+<img width="1727" height="917" alt="Captura de tela 2025-11-23 234918" src="https://github.com/user-attachments/assets/4c489c86-4403-49f5-a32a-443f24439916" />
