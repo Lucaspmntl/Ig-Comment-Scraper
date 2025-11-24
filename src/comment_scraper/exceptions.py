@@ -33,6 +33,7 @@ class SchemaConverterException(Exception):
 
         super().__init__()
 
+
 class NoKeywordInCommentsException(Exception):
     def __init__(self, keyword: str):
         self.message = f"There is no keyword {keyword} in comments from this post"

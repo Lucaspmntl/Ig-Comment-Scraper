@@ -1,6 +1,6 @@
 from typing import Optional
 
-from fastapi import FastAPI, Query, HTTPException
+from fastapi import FastAPI, HTTPException, Query
 from pydantic import HttpUrl
 
 from comment_scraper.exceptions import NoKeywordInCommentsException
@@ -23,7 +23,7 @@ async def get_messages(url: list[HttpUrl] = Query(...),
             keyword_comments = instagram_service.keyword_filter(comments_data, keyword)
             return keyword_comments
 
-        except NoKeywordInCommentsException as e:
+        except NoKeywordInCommentsException:
             raise HTTPException(
                 status_code=404,
                 detail=f"No comments with the keyword {keyword}"

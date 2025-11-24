@@ -2,7 +2,6 @@ import os
 
 from apify_client import ApifyClientAsync
 from dotenv import load_dotenv
-from pydantic import HttpUrl
 
 from comment_scraper.exceptions import *
 

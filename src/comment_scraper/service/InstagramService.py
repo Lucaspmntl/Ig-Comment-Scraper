@@ -1,7 +1,8 @@
-from pydantic import HttpUrl
-
 from comment_scraper.client.InstagramClient import InstagramClient
-from comment_scraper.exceptions import SchemaConverterException, NoKeywordInCommentsException
+from comment_scraper.exceptions import (
+    NoKeywordInCommentsException,
+    SchemaConverterException,
+)
 from comment_scraper.schemas.instagramSchemas import BaseComment
 
 
