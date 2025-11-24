@@ -32,3 +32,7 @@ class SchemaConverterException(Exception):
         self.message = f"There was an error during converting raw data to schema \nDetails: {original_error}"
 
         super().__init__()
+
+class NoKeywordInCommentsException(Exception):
+    def __init__(self, keyword: str):
+        self.message = f"There is no keyword {keyword} in comments from this post"

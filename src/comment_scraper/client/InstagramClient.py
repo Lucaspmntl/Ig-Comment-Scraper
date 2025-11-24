@@ -2,6 +2,7 @@ import os
 
 from apify_client import ApifyClientAsync
 from dotenv import load_dotenv
+from pydantic import HttpUrl
 
 from comment_scraper.exceptions import *
 
@@ -18,7 +19,7 @@ class InstagramClient:
 
         self.apify_client = ApifyClientAsync(token=self.TOKEN)
 
-    async def get_ig_comments(self, url: list[str]):
+    async def get_ig_comments(self, url: list[str], limit: int = 1000):
         actor_name = 'apify/instagram-comment-scraper'
 
         comment_actor = self.apify_client.actor(actor_name)
@@ -27,10 +28,10 @@ class InstagramClient:
             'directUrls': url,
             "includeNestedComments": False,
             "isNewestComments": False,
-            # "resultsLimit": 15
+            "resultsLimit": limit
         }
 
-        print(f"Initialing comments scraping from: {url}")
+        print(f"\n🔎 INITIALING COMMENT SCRAPING FROM: {url}\n")
 
         try:
             run_info = await comment_actor.call(run_input=run_input)
@@ -49,15 +50,19 @@ class InstagramClient:
 
         first_pagination_item = pagination_result.items[0]
 
-        if first_pagination_item and first_pagination_item.get("error") :
+        if first_pagination_item and first_pagination_item.get("error"):
             raise DatasetException(dataset_id,
                                    first_pagination_item["error"] or
                                    first_pagination_item["errorDescription"])
 
+        if pagination_result.items:
+            first_item = pagination_result.items[0]
+            if first_item.get("error"):
+                raise DatasetException(dataset_id, first_item.get("error"))
+
         results = await dataset_client.list_items(
             fields=[
                     "postUrl",
-                    "url",
                     "commentUrl",
                     "id",
                     "text",
